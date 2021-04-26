@@ -35,7 +35,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	 * The method creates an account in the platform with the given handle and
 	 * description.
 	 *
-	 * @param handle      account's handle.
+	 * @param handle account's handle.
 	 * @param description account's description.
 	 * @throws IllegalHandleException if the handle already exists in the platform.
 	 * @throws InvalidHandleException if the new handle is empty, has more than 30
