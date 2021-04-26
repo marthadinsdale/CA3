@@ -1,14 +1,9 @@
 package socialmedia;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-/**
- * BadSocialMedia is a minimally compiling, but non-functioning implementor of
- * the SocialMediaPlatform interface.
- * 
- * @author Diogo Pacheco
- * @version 1.0
- */
+
 public class SocialMedia implements SocialMediaPlatform {
 
 	private ArrayList<Account> accounts;
@@ -36,10 +31,29 @@ public class SocialMedia implements SocialMediaPlatform {
 		return a.getId();
 	}
 
+	/**
+	 * The method creates an account in the platform with the given handle and
+	 * description.
+	 *
+	 * @param handle      account's handle.
+	 * @param description account's description.
+	 * @throws IllegalHandleException if the handle already exists in the platform.
+	 * @throws InvalidHandleException if the new handle is empty, has more than 30
+	 *                                characters, or has white spaces.
+	 * @return the ID of the created account.
+	 */
 	@Override
 	public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
-		// TODO Auto-generated method stub
-		return 0;
+		Account b = new Account(handle, description);
+		if (handle.isBlank() || handle.length() > 30 || handle.contains(" ")) {
+			throw new InvalidHandleException("Invalid Handle");
+		} else if (accounts.contains(handle)) {
+			throw new IllegalHandleException("Handle Already Exists");
+		} else {
+			b.setHandle(handle);
+			b.setDescriptionField(description);
+		}
+		return b.getId();
 	}
 
 	@Override
