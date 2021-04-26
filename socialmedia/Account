@@ -5,8 +5,43 @@ public class Account {
     private String descriptionField;
 
     // constructor instantiating account
+    public Account(int id, String handle) {
+        this.id = id;
+        this.handle = handle;
+    }
+
     public Account(int id, String handle, String descriptionField){
         this.id = id;
         this.handle = handle;
         this.descriptionField = descriptionField;
     }
+
+    // setters
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setHandle(String handle) {
+        this.handle = handle;
+    }
+
+    public void setDescriptionField(String descriptionField){
+        this.descriptionField = descriptionField;
+    }
+
+    //getters
+    public int getId() {
+        return this.id;
+    }
+    
+    public String getHandle() {
+        return this.handle;
+    }
+    
+    public String getDescriptionField() {
+        return this.descriptionField;
+    }
+
+
+
+}
