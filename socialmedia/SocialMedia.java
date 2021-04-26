@@ -9,11 +9,20 @@ import java.io.IOException;
  * @author Diogo Pacheco
  * @version 1.0
  */
-public class BadSocialMedia implements SocialMediaPlatform {
+public class SocialMedia implements SocialMediaPlatform {
 
 	private ArrayList<Account> accounts;
 
-
+	/**
+	 * The method creates an account in the platform with the given handle.
+	 *
+	 * @param handle account's handle.
+	 * @throws IllegalHandleException if the handle already exists in the platform.
+	 * @throws InvalidHandleException if the new handle is empty, has more than 30
+	 *                                characters, or has white spaces.
+	 * @return the ID of the created account.
+	 *
+	 */
 	@Override
 	public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
 		Account a = new Account(handle);
