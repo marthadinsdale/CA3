@@ -11,10 +11,20 @@ import java.io.IOException;
  */
 public class BadSocialMedia implements SocialMediaPlatform {
 
+	private ArrayList<Account> accounts;
+
+
 	@Override
 	public int createAccount(String handle) throws IllegalHandleException, InvalidHandleException {
-		// TODO Auto-generated method stub
-		return 0;
+		Account a = new Account(handle);
+		if (handle.isBlank() || handle.length() > 30 || handle.contains(" ")) {
+			throw new InvalidHandleException("Invalid Handle");
+		} else if (accounts.contains(handle)) {
+			throw new IllegalHandleException("Handle Already Exists");
+		} else {
+			a.setHandle(handle);
+		}
+		return a.getId();
 	}
 
 	@Override
