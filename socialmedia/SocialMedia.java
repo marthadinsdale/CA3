@@ -27,6 +27,7 @@ public class SocialMedia implements SocialMediaPlatform {
 			throw new IllegalHandleException("Handle Already Exists");
 		} else {
 			a.setHandle(handle);
+			accounts.add(a);
 		}
 		return a.getId();
 	}
@@ -52,6 +53,7 @@ public class SocialMedia implements SocialMediaPlatform {
 		} else {
 			b.setHandle(handle);
 			b.setDescriptionField(description);
+			accounts.add(b);
 		}
 		return b.getId();
 	}
