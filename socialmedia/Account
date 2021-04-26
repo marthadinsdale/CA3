@@ -20,7 +20,7 @@ public class Account {
      * @param descriptionField
      */
     public Account(String handle, String descriptionField){
-        this.id = ++Account,lastId;
+        this.id = ++Account.lastId;
         setHandle(handle);
         setDescriptionField(descriptionField);
     }
