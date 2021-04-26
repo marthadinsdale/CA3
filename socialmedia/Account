@@ -1,0 +1,11 @@
+public class Account {
+
+    private int id;
+    private String handle;
+    private String descriptionField;
+
+    public Account(int id, String handle, String descriptionField){
+        this.id = id;
+        this.handle = handle;
+        this.descriptionField = descriptionField;
+    }
