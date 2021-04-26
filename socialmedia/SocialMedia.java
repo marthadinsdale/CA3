@@ -68,11 +68,29 @@ public class SocialMedia implements SocialMediaPlatform {
 
 	}
 
+	/**
+	 * The method replaces the oldHandle of an account by the newHandle.
+	 * @param oldHandle account's old handle.
+	 * @param newHandle account's new handle.
+	 * @throws HandleNotRecognisedException if the old handle does not match to any
+	 *                                      account in the system.
+	 * @throws IllegalHandleException       if the new handle already exists in the
+	 *                                      platform.
+	 * @throws InvalidHandleException       if the new handle is empty, has more
+	 *                                      than 30 characters, or has white spaces.
+	 */
 	@Override
 	public void changeAccountHandle(String oldHandle, String newHandle)
 			throws HandleNotRecognisedException, IllegalHandleException, InvalidHandleException {
-		// TODO Auto-generated method stub
-
+		if (!accounts.contains(oldHandle)) {
+			throw new HandleNotRecognisedException("Handle Not Recognised");
+		} else if (newHandle.isBlank() || newHandle.length() > 30 || newHandle.contains(" ")) {
+			throw new InvalidHandleException("Invalid Handle");
+		}  else if (accounts.contains(newHandle)) {
+			throw new IllegalHandleException("Handle Already Exists");
+		} else {
+			accounts.set(accounts.indexOf(oldHandle), new Account(newHandle));
+		}
 	}
 
 	@Override
