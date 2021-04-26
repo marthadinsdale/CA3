@@ -146,11 +146,18 @@ public class SocialMedia implements SocialMediaPlatform {
 		return null;
 	}
 
+	
+	/**
+	 * This method returns the current total number of accounts present in the
+	 * platform. 
+	 * @return the total number of accounts in the platform.
+	 */
 	@Override
 	public int getNumberOfAccounts() {
-		// TODO Auto-generated method stub
-		return 0;
+		return accounts.size();
 	}
+
+	
 
 	@Override
 	public int getTotalOriginalPosts() {
