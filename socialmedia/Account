@@ -14,24 +14,42 @@ public class Account {
         setHandle(handle);
     }
 
-    /** creates account with all information, i.e. handle and description field
+    /** creates account with all information, i.e. id, handle and description field
      *
      * @param handle
      * @param descriptionField
      */
     public Account(String handle, String descriptionField){
-        this.id = ++Account.lastId;
-        setHandle(handle);
+        ++Account.lastId;
+        this.handle = handle;
         setDescriptionField(descriptionField);
     }
 
+    /** check whether the String is valid, i.e. not null or blank, fewer than 30 characters and contains no blank spaces
+     *
+     * @param str
+     * @return true if the String is valid, false if not
+     */
+   private boolean isValidString(String str) {
+       if (str != null && !str.isBlank() || str.length() < 30 || !str.contains(" ")) {
+           return true;
+       } else {
+           System.err.println(String.format("%s - is not a valid string to use", str));
+           return false;
+       }
+   }
     // setters
-    public void setId(int id){
-        this.id = id;
-    }
 
+    /** set a handle if it is valid
+     *
+     * @param handle to set
+     */
     public void setHandle(String handle) {
-        this.handle = handle;
+        if (isValidString(handle) == true) {
+            this.handle = handle;
+        } else {
+            System.exit(1);
+        }
     }
 
     public void setDescriptionField(String descriptionField){
@@ -39,21 +57,33 @@ public class Account {
     }
 
     //getters
+
+    /**
+     *
+     * @return ID
+     */
     public int getId() {
         return this.id;
     }
 
+    /**
+     *
+     * @return handle
+     */
     public String getHandle() {
         return this.handle;
     }
 
+    /**
+     *
+     * @return description field
+     */
     public String getDescriptionField() {
         return this.descriptionField;
     }
 
-
-
 }
+
 
 
 // account related methods
