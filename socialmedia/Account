@@ -4,6 +4,7 @@ public class Account {
     private String handle;
     private String descriptionField;
 
+    // constructor instantiating account
     public Account(int id, String handle, String descriptionField){
         this.id = id;
         this.handle = handle;
