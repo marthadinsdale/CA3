@@ -1,26 +1,25 @@
 public class Account {
 
+    private static int lastId = 999;
     private int id;
     private String handle;
     private String descriptionField;
 
-     /**
-     * creates account with an id and handle
-     * @param id
+    /**
+     * creates account with a handle
      * @param handle
      */
-    public Account(int id, String handle) {
-        this.id = id;
+    public Account(String handle) {
+        this.id = ++Account.lastId ;
         this.handle = handle;
     }
 
-    /** creates account with all information, i.e. id, handle and description field
+    /** creates account with all information, i.e. handle and description field
      *
-     * @param id
      * @param handle
      * @param descriptionField
      */
-    public Account(int id, String handle, String descriptionField){
+    public Account(String handle, String descriptionField){
         this.id = id;
         this.handle = handle;
         this.descriptionField = descriptionField;
@@ -43,11 +42,11 @@ public class Account {
     public int getId() {
         return this.id;
     }
-    
+
     public String getHandle() {
         return this.handle;
     }
-    
+
     public String getDescriptionField() {
         return this.descriptionField;
     }
@@ -55,6 +54,7 @@ public class Account {
 
 
 }
+
 
 // account related methods
 // create account, remove account, change account handle, update account description, show account
