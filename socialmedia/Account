@@ -4,12 +4,22 @@ public class Account {
     private String handle;
     private String descriptionField;
 
-    // constructor instantiating account
+     /**
+     * creates account with an id and handle
+     * @param id
+     * @param handle
+     */
     public Account(int id, String handle) {
         this.id = id;
         this.handle = handle;
     }
 
+    /** creates account with all information, i.e. id, handle and description field
+     *
+     * @param id
+     * @param handle
+     * @param descriptionField
+     */
     public Account(int id, String handle, String descriptionField){
         this.id = id;
         this.handle = handle;
