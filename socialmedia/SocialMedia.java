@@ -42,11 +42,12 @@ public class SocialMedia implements SocialMediaPlatform {
 	 * description.
 	 *
 	 * @param handle account's handle.
-	 * @param description account's description.
+	 * @param description account's description
 	 * @throws IllegalHandleException if the handle already exists in the platform.
 	 * @throws InvalidHandleException if the new handle is empty, has more than 30
 	 *                                characters, or has white spaces.
 	 * @return the ID of the created account.
+	 *
 	 */
 	@Override
 	public int createAccount(String handle, String description) throws IllegalHandleException, InvalidHandleException {
@@ -87,7 +88,7 @@ public class SocialMedia implements SocialMediaPlatform {
 
 
 	/**
-	 * The method removes the account with the corresponding handle from the
+	 * The method removes the account with the corresponding handle from the system.
 	 * The state of this SocialMediaPlatform must be be unchanged if any exceptions
 	 * are thrown.
 	 *
@@ -150,7 +151,7 @@ public class SocialMedia implements SocialMediaPlatform {
 		}
 	}
 	
-		/**
+	/**
 	 * The method creates a formatted string summarising the stats of the account
 	 * identified by the given handle.
 	 * @param handle handle to identify the account.
@@ -176,19 +177,30 @@ public class SocialMedia implements SocialMediaPlatform {
 		return result;
 	} // just need to add endorsements and posts in the toString when calculated 
 
+	/**
+	 * The method creates a post in the platform with the given handle and message.
+	 *
+	 * @param handle account's handle.
+	 * @param message post's message.
+	 * @throws HandleNotRecognisedException if the handle does not match to any account in the system.
+	 * @throws InvalidPostException if the new message is empty, has more than 100 characters.
+	 * @return the ID of the created account.
+	 *
+	 */
 	@Override
         public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
             Post p = new Post(handle, message);
-            for (Account a : accounts) {
+            for (Post p : posts) {
                 if (!a.getHandle().equals(handle)) {
                     throw new HandleNotRecognisedException("Handle not recognised");
-                } else {
+                } else if (message == null || message.length() > 100) {
+		    throw new InvalidPostException("Post message invalid.");
+		} else {
                     p.setHandle(handle);
+		    p.setMessage(message);
+		    posts.add(p);
                 }
-            }
-            if (message == null || message.length() > 100) {
-                throw new InvalidPostException("Message invalid.");
-            }
+	    }
             return p.getId();
         }
 
@@ -206,16 +218,47 @@ public class SocialMedia implements SocialMediaPlatform {
 		return 0;
 	}
 
+	/**
+	 * The method removes the post with the corresponding ID from the system.
+	 * The state of this SocialMediaPlatform must be be unchanged if any exceptions
+	 * are thrown.
+	 *
+	 * @param id post's id
+	 * @throws PostIDNotRecognisedException if the ID does not match to any
+	 *                                      post in the system.
+	 */
 	@Override
 	public void deletePost(int id) throws PostIDNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		for (Post p : posts) {
+		    if (p.getPostId().equals(id)){
+			    posts.remove(p);
+		    } else {
+			    throw new PostIDNotRecognisedException("Post ID not recognised.");
+		    }
+		}
 	}
 
+	/**
+	 * The method creates a formatted string showing an individual post identified
+	 * by the given ID.
+	 * @param id post ID.
+	 * @return the post formatted as a string.
+	 * @throws PostIDNotRecognisedException if the ID does not match to any
+	 *                                      post in the system.
+	 */
 	@Override
 	public String showIndividualPost(int id) throws PostIDNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
+		String result = "";
+		
+		// ADD IN STRING!!!
+		
+		for (Post p : posts){
+			if (!p.getPostId().equals(id)){
+				throw new PostIDNotRecognisedException("Post ID not recognised.");
+			} else {
+				result = String.format(result, toString());
+			}
+		}
 	}
 
 	@Override
