@@ -3,8 +3,8 @@ package socialmedia;
 public class Post {
 
     private static int lastId = 999;
-    private int id;
-    private Account account;
+    private int postId;
+    private Account account; // hi martha the main issue is with the account part \_0_0_/ (attempt at emoji)
     private String handle;
     private String message;
 
@@ -14,7 +14,7 @@ public class Post {
      * @param message
      */
     public Post(String handle, String message) {
-        this.id = ++Post.lastId;
+        this.postId = ++Post.lastId;
         if (this.account != null) {
             account.setHandle(handle);
         }
@@ -26,11 +26,11 @@ public class Post {
      * @param str
      * @return true if the String is valid, false if not
      */
-    private boolean isValidString(String str) {
+    private boolean isValidMessage(String str) {
         if (str != null && !str.isBlank() && str.length() <= 100) {
             return true;
         } else {
-            System.err.printf("%s - is not a valid string to use%n", str);
+            System.err.printf("%s - is an invalid message.%n", str);
             return false;
         }
     }
@@ -64,12 +64,20 @@ public class Post {
      *
      * @param message to set
      */
-    public void setMessage(String message) {
+    public String setMessage(String message) {
         if (isValidString(message)){
             this.message = message;
         } else {
             System.exit(1);
         }
+    }
+    
+    /**
+    * set post ID number
+    * @param id to set
+    */
+    public int setPostId(int postID) {
+        this.postId = postId;
     }
 
     // getter methods
