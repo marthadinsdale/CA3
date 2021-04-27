@@ -125,12 +125,24 @@ public class SocialMedia implements SocialMediaPlatform {
 		}
 	}
 
+	/**
+	 * The method updates the description of the account with the respective handle.
+	 * @param handle      handle to identify the account.
+	 * @param description new text for description.
+	 * @throws HandleNotRecognisedException if the handle does not match to any
+	 *                                      account in the system.
+	 */
 	@Override
 	public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
-		// TODO Auto-generated method stub
-
+		for (Account a : accounts) {
+			if (a.getHandle() == handle) {
+				a.setDescriptionField(description);
+			} else {
+				throw new HandleNotRecognisedException("Handle not recognised");
+			}
+		}
 	}
-
+	
 	@Override
 	public String showAccount(String handle) throws HandleNotRecognisedException {
 		// TODO Auto-generated method stub
