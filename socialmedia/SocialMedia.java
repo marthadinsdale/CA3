@@ -143,11 +143,31 @@ public class SocialMedia implements SocialMediaPlatform {
 		}
 	}
 	
+		/**
+	 * The method creates a formatted string summarising the stats of the account
+	 * identified by the given handle.
+	 * @param handle handle to identify the account.
+	 * @return the account formatted summary.
+	 * @throws HandleNotRecognisedException if the handle does not match to any
+	 *                                      account in the system.
+	 */
 	@Override
 	public String showAccount(String handle) throws HandleNotRecognisedException {
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String result = """
+				\t\t\tAccount Summary
+				    
+					 %s
+				    
+				""";
+		for (Account a : accounts) {
+			if (!a.getHandle().equals(handle)) {
+				throw new HandleNotRecognisedException("Handle not recognised");
+			} else {
+				result = String.format(result, toString());
+			}
+		}
+		return result;
+	} // just need to add endorsements and posts in the toString when calculated 
 
 	@Override
 	public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
