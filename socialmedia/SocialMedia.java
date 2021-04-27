@@ -91,7 +91,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	@Override
 	public void removeAccount(String handle) throws HandleNotRecognisedException {
 		for (Account a : accounts) {
-			if (a.getHandle() == handle) {
+			if (a.getHandle().equals(handle)) {
 				accounts.remove(a);
 				//remove posts and comments too
 			} else {
@@ -135,7 +135,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	@Override
 	public void updateAccountDescription(String handle, String description) throws HandleNotRecognisedException {
 		for (Account a : accounts) {
-			if (a.getHandle() == handle) {
+			if (a.getHandle().equals(handle)) {
 				a.setDescriptionField(description);
 			} else {
 				throw new HandleNotRecognisedException("Handle not recognised");
