@@ -68,11 +68,10 @@ public class SocialMedia implements SocialMediaPlatform {
 	 */
 	@Override
 	public void removeAccount(int id) throws AccountIDNotRecognisedException {
-		for(int i = 0; i< accounts.size(); i++) {
-			int idList = accounts.get(i).getId();
-			if(idList == id) {
-				accounts.remove(idList);
-				//remove posts and comments too 
+		for(Account a :accounts) {
+			if(a.getId() == id){
+				accounts.remove(a);
+				//remove posts and comments too
 			} else {
 				throw new AccountIDNotRecognisedException("Account ID not recognised");
 			}
@@ -91,13 +90,14 @@ public class SocialMedia implements SocialMediaPlatform {
 	 */
 	@Override
 	public void removeAccount(String handle) throws HandleNotRecognisedException {
-		if(!accounts.contains(handle)) {
-			throw new HandleNotRecognisedException("Handle not recognised");
-		}else {accounts.remove(handle);
-		// remove posts and comments too
+		for (Account a : accounts) {
+			if (a.getHandle() == handle) {
+				accounts.remove(a);
+				//remove posts and comments too
+			} else {
+				throw new HandleNotRecognisedException("Handle not recognised");
 			}
 		}
-
 	}
 
 	/**
