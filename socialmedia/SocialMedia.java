@@ -279,7 +279,6 @@ public class SocialMedia implements SocialMediaPlatform {
 		comments.clear();
 		endorsements.clear();
 		accounts.clear();
-		return 0;
 	}
 
 	@Override
