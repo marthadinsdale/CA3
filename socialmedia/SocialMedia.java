@@ -177,10 +177,20 @@ public class SocialMedia implements SocialMediaPlatform {
 	} // just need to add endorsements and posts in the toString when calculated 
 
 	@Override
-	public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+        public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
+            Post p = new Post(handle, message);
+            for (Account a : accounts) {
+                if (!a.getHandle().equals(handle)) {
+                    throw new HandleNotRecognisedException("Handle not recognised");
+                } else {
+                    p.setHandle(handle);
+                }
+            }
+            if (message == null || message.length() > 100) {
+                throw new InvalidPostException("Message invalid.");
+            }
+            return p.getId();
+        }
 
 	@Override
 	public int endorsePost(String handle, int id)
