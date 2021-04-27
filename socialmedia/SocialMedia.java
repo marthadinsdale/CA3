@@ -223,24 +223,34 @@ public class SocialMedia implements SocialMediaPlatform {
 		return accounts.size();
 	}
 
-	
-
+	/**
+	 * This method returns the current total number of original posts present 
+	 * in the platform. 
+	 * @return the total number of original posts in the platform.
+	 */
 	@Override
 	public int getTotalOriginalPosts() {
-		// TODO Auto-generated method stub
-		return 0;
+		return posts.size();
 	}
 
+	/**
+	 * This method returns the current total number of endorsement posts present 
+	 * in the platform. 
+	 * @return the total number of original posts in the platform.
+	 */
 	@Override
 	public int getTotalEndorsmentPosts() {
-		// TODO Auto-generated method stub
-		return 0;
+		return endorsements.size();
 	}
 
+	/**
+	 * This method returns the current total number of comment posts present 
+	 * in the platform. 
+	 * @return the total number of comment posts in the platform.
+	 */
 	@Override
 	public int getTotalCommentPosts() {
-		// TODO Auto-generated method stub
-		return 0;
+		return comments.size();
 	}
 
 	@Override
@@ -255,10 +265,18 @@ public class SocialMedia implements SocialMediaPlatform {
 		return 0;
 	}
 
+	/**
+	* This method clears all ArrayLists of posts, comments, endorsements and 
+	* accounts, thereby erasing the platform.
+	* @return the erased platform (0)
+	*/
 	@Override
 	public void erasePlatform() {
-		// TODO Auto-generated method stub
-
+		posts.clear();
+		comments.clear();
+		endorsements.clear();
+		accounts.clear();
+		return 0;
 	}
 
 	@Override
