@@ -34,7 +34,7 @@ public class Account {
        if (str != null && !str.isBlank() || str.length() < 30 || !str.contains(" ")) {
            return true;
        } else {
-           System.err.println(String.format("%s - is not a valid string to use", str));
+           System.err.printf("%s - is not a valid string to use", str);
            return false;
        }
    }
@@ -45,7 +45,7 @@ public class Account {
      * @param handle to set
      */
     public void setHandle(String handle) {
-        if (isValidString(handle) == true) {
+        if (isValidString(handle)) {
             this.handle = handle;
         } else {
             System.exit(1);
