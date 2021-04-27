@@ -1,6 +1,82 @@
 public class Post {
 
     private static int lastId = 999;
+    private int id;
     private Account account;
-   
+    private String message;
+
+    /**
+     * creates post with an account and message
+     * @param account
+     * @param message
+     */
+    public Post(Account account, String message) {
+        this.id = ++Post.lastId;
+        this.account = account;
+        this.message = message;
+    }
+
+    /** check whether the String is valid, i.e. not null, blank, or less than or equal to 100 characters
+     *
+     * @param str
+     * @return true if the String is valid, false if not
+     */
+    private boolean isValidString(String str) {
+        if (str != null && !str.isBlank() && str.length() <= 100) {
+            return true;
+        } else {
+            System.err.printf("%s - is not a valid string to use%n", str);
+            return false;
+        }
+    }
+
+    // setter methods
+    
+    /** set account associated with post
+     *
+     * @param account to set
+     */
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    /** set a post message if it is a valid string
+     *
+     * @param message to set
+     */
+    public void setMessage(String message) {
+        if (isValidString(message)){
+            this.message = message;
+        } else {
+            System.exit(1);
+        }
+    }
+
+    // getter methods
+
+    /**
+     *
+     * @return id
+     */
+    public int getId() {
+        return id;
+    }
+
+
+    /**
+     *
+     * @return account
+     */
+    public Account getAccount() {
+        return account;
+    }
+
+
+    /**
+     *
+     * @return message
+     */
+    public String getMessage() {
+        return message;
+    }
 }
