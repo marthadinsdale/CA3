@@ -23,15 +23,16 @@ public class SocialMedia implements SocialMediaPlatform {
 		Account a = new Account(handle);
 		if (handle.isBlank() || handle.length() > 30 || handle.contains(" ")) {
 			throw new InvalidHandleException("Invalid Handle");
-		} else if (accounts.contains(handle)) {
-			throw new IllegalHandleException("Handle Already Exists");
-		} else {
-			a.setHandle(handle);
-			accounts.add(a);
+		}for (Account i : accounts) {
+			if (i.getHandle().equals(handle)) {
+				throw new IllegalHandleException("Handle Already Exists");
+			} else {
+				a.setHandle(handle);
+				accounts.add(a);
+			}
 		}
 		return a.getId();
-	}
-	
+	} 
 
 	/**
 	 * The method creates an account in the platform with the given handle and
@@ -49,14 +50,17 @@ public class SocialMedia implements SocialMediaPlatform {
 		Account b = new Account(handle, description);
 		if (handle.isBlank() || handle.length() > 30 || handle.contains(" ")) {
 			throw new InvalidHandleException("Invalid Handle");
-		} else if (accounts.contains(handle)) {
-			throw new IllegalHandleException("Handle Already Exists");
-		} else {
-			b.setHandle(handle);
-			b.setDescriptionField(description);
-			accounts.add(b);
 		}
-		return b.getId();
+		for (Account i : accounts) {
+			if (i.getHandle().equals(handle)) {
+				throw new IllegalHandleException("Handle Already Exists");
+			} else {
+				b.setHandle(handle);
+				b.setDescriptionField(description);
+				accounts.add(b);
+			}
+		} return b.getId();
+
 	}
 	
 
