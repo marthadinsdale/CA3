@@ -31,6 +31,7 @@ public class SocialMedia implements SocialMediaPlatform {
 		}
 		return a.getId();
 	}
+	
 
 	/**
 	 * The method creates an account in the platform with the given handle and
@@ -57,16 +58,45 @@ public class SocialMedia implements SocialMediaPlatform {
 		}
 		return b.getId();
 	}
+	
 
+	/**
+	 * The method removes the account with the corresponding ID from the platform.
+	 * @param id ID of the account.
+	 * @throws AccountIDNotRecognisedException if the ID does not match to any
+	 *                                         account in the system.
+	 */
 	@Override
 	public void removeAccount(int id) throws AccountIDNotRecognisedException {
-		// TODO Auto-generated method stub
+		for(int i = 0; i< accounts.size(); i++) {
+			int idList = accounts.get(i).getId();
+			if(idList == id) {
+				accounts.remove(idList);
+				//remove posts and comments too 
+			} else {
+				throw new AccountIDNotRecognisedException("Account ID not recognised");
+			}
+		}
+		}
 
-	}
 
+	/**
+	 * The method removes the account with the corresponding handle from the
+	 * The state of this SocialMediaPlatform must be be unchanged if any exceptions
+	 * are thrown.
+	 *
+	 * @param handle account's handle.
+	 * @throws HandleNotRecognisedException if the handle does not match to any
+	 *                                      account in the system.
+	 */
 	@Override
 	public void removeAccount(String handle) throws HandleNotRecognisedException {
-		// TODO Auto-generated method stub
+		if(!accounts.contains(handle)) {
+			throw new HandleNotRecognisedException("Handle not recognised");
+		}else {accounts.remove(handle);
+		// remove posts and comments too
+			}
+		}
 
 	}
 
