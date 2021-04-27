@@ -7,6 +7,9 @@ import java.util.ArrayList;
 public class SocialMedia implements SocialMediaPlatform {
 
 	private ArrayList<Account> accounts;
+	private ArrayList<Post> posts;
+	private ArrayList<Comment> comments;
+	private ArrayList<Endorsement> endorsements;
 
 	/**
 	 * The method creates an account in the platform with the given handle.
