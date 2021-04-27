@@ -1,18 +1,23 @@
+package socialmedia;
+
 public class Post {
 
     private static int lastId = 999;
     private int id;
     private Account account;
+    private String handle;
     private String message;
 
     /**
      * creates post with an account and message
-     * @param account
+     * @param handle
      * @param message
      */
-    public Post(Account account, String message) {
+    public Post(String handle, String message) {
         this.id = ++Post.lastId;
-        this.account = account;
+        if (this.account != null) {
+            account.setHandle(handle);
+        }
         this.message = message;
     }
 
@@ -31,13 +36,28 @@ public class Post {
     }
 
     // setter methods
-    
+
     /** set account associated with post
      *
      * @param account to set
      */
     public void setAccount(Account account) {
         this.account = account;
+    }
+
+
+    /** set account handle associated with post
+     *
+     * @param handle to set
+     * @return handle
+     */
+    public String setHandle(String handle) {
+        if (isValidString(handle)) {
+            this.handle = handle;
+        } else {
+            System.exit(1);
+        }
+        return handle;
     }
 
     /** set a post message if it is a valid string
