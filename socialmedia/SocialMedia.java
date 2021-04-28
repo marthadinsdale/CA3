@@ -79,12 +79,17 @@ public class SocialMedia implements SocialMediaPlatform {
 		for(Account a :accounts) {
 			if(a.getId() == id){
 				accounts.remove(a);
-				//remove posts and comments too
+				for(Post p: posts){
+					if(p.getId() == id) {
+						posts.remove(p);
+					}
+				}
 			} else {
 				throw new AccountIDNotRecognisedException("Account ID not recognised");
 			}
 		}
 		}
+
 
 
 	/**
