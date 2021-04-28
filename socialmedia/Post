@@ -4,7 +4,7 @@ public class Post {
 
     private static int lastId = 999;
     private int postId;
-    private Account account; // hi martha the main issue is with the account part \_0_0_/ (attempt at emoji)
+    private Account account;
     private String handle;
     private String message;
 
@@ -13,18 +13,24 @@ public class Post {
      * @param handle
      * @param message
      */
-    public Post(String handle, String message) {
+    public Post(String handle, String message){
         this.postId = ++Post.lastId;
-        if (this.account != null) {
-            account.setHandle(handle);
-        }
-        this.message = message;
+        setHandle(handle);
+        setMessage(message);
     }
 
-    /** check whether the String is valid, i.e. not null, blank, or less than or equal to 100 characters
+    /**
+     *
+     * @return post in string format
+     */
+    public String toString() {
+        return "ID: " + postId +"/nAccount: " + handle + "/n " + message;
+    }
+
+    /** check whether the message string is valid, i.e. not null, blank, or less than or equal to 100 characters
      *
      * @param str
-     * @return true if the String is valid, false if not
+     * @return true if the message is valid, false if not
      */
     private boolean isValidMessage(String str) {
         if (str != null && !str.isBlank() && str.length() <= 100) {
@@ -35,6 +41,20 @@ public class Post {
         }
     }
 
+    /** check whether the handle string is valid, i.e. not null, blank, or more than 30 characters.
+     *
+     * @param str
+     * @return true if the handle is valid, false if not
+     */
+    private boolean isValidHandle(String str) {
+        if (str != null && !str.isBlank() || str.length() <= 30 || !str.contains(" ")) {
+            return true;
+        } else {
+            System.err.printf("%s - is not a valid string to use", str);
+            return false;
+        }
+    }
+    
     // setter methods
 
     /** set account associated with post
@@ -52,7 +72,7 @@ public class Post {
      * @return handle
      */
     public String setHandle(String handle) {
-        if (isValidString(handle)) {
+        if (isValidHandle(handle)) {
             this.handle = handle;
         } else {
             System.exit(1);
@@ -65,29 +85,31 @@ public class Post {
      * @param message to set
      */
     public String setMessage(String message) {
-        if (isValidString(message)){
+        if (isValidMessage(message)){
             this.message = message;
         } else {
             System.exit(1);
         }
+        return message;
     }
-    
+
     /**
-    * set post ID number
-    * @param id to set
-    */
-    public int setPostId(int postID) {
+     * set post ID number
+     * @param postId to set
+     */
+    public int setPostId(int postId) {
         this.postId = postId;
+        return postId;
     }
 
     // getter methods
 
     /**
      *
-     * @return id
+     * @return post ID
      */
     public int getId() {
-        return id;
+        return postId;
     }
 
 
@@ -99,7 +121,13 @@ public class Post {
         return account;
     }
 
-
+    /**
+     * 
+     * @return handle
+     */
+    public String getHandle(){
+        return handle;
+    }
     /**
      *
      * @return message
