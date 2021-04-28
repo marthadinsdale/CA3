@@ -35,7 +35,7 @@ public class Post {
      * @return true if the message is valid, false if not
      */
     private boolean isValidMessage(String str) {
-        if (str != null && !str.isBlank() && str.length() <= 100) {
+        if (str != null || !str.isBlank() || str.length() <= 100) {
             return true;
         } else {
             System.err.printf("%s - is an invalid message.%n", str);
