@@ -208,15 +208,16 @@ public class SocialMedia implements SocialMediaPlatform {
 	public int endorsePost(String handle, int id)
 			throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException {
 		Endorsement e = new Endorsement();
-		comments.add(e);
+		endorsements.add(e);
 		return postId;
 	}
 
 	@Override
 	public int commentPost(String handle, int id, String message) throws HandleNotRecognisedException,
 			PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
-		// TODO Auto-generated method stub
-		return 0;
+		Comment c = new Comment();
+		comments.add(c);
+		return commentId;
 	}
 
 	/**
