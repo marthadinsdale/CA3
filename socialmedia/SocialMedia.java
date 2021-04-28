@@ -373,11 +373,29 @@ public class SocialMedia implements SocialMediaPlatform {
 		accounts.clear();
 	}
 
-	@Override
-	public void savePlatform(String filename) throws IOException {
-		// TODO Auto-generated method stub
-
-	}
+	/**
+         * Method saves this SocialMediaPlatform’s contents into a serialised file, with
+         * the filename given in the argument.
+         *
+         * @param filename location of the file to be saved
+         * @throws IOException if there is a problem experienced when trying to save the
+         * store contents to the file
+         */
+	 @Override
+         public void savePlatform(String filename) throws IOException {
+             try {
+                 FileOutputStream fileOutputStream = new FileOutputStream(filename);
+                 BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(FileOutputStream);
+                 ObjectOutputStream objectOutputStream = new ObjectOutputStream(BufferedOutputStream);
+                 objectOutputStream.writeObject(posts);
+                 objectOutputStream.writeObject(accounts);
+                 objectOutputStream.writeObject(comments);
+                 objectOutputStream.writeObject(endorsements);
+                 bufferedOutputStream.close();
+             } catch (IOException e) {
+                 System.out.println("Problem saving contents to file.");
+             }
+         }
 
 	/**
 	 * Method should load and replace this SocialMediaPlatform's contents with the
