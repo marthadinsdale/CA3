@@ -7,6 +7,8 @@ public class Post {
     private Account account;
     private String handle;
     private String message;
+    private String[] endorsements;
+    private String[] comments;
 
     /**
      * creates post with a handle and message
@@ -17,19 +19,6 @@ public class Post {
         this.postId = ++Post.lastId;
         setHandle(handle);
         setMessage(message);
-    }
-
-    /**
-     * creates post with an account and message and associated post id
-     * @param handle
-     * @param message
-     * @param postId
-     */  
-    public Post(String handle, String message, int postId) {
-        ++Post.lastId;
-        this.handle = handle;
-        this.message = message;
-        setPostId(postId);
     }
 
     /**
