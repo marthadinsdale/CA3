@@ -237,6 +237,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	 * @throws InvalidPostException         if the comment message is empty or has
 	 *                                      more than 100 characters.
 	 */
+	@Override
 	public int commentPost(String handle, int id, String message) throws HandleNotRecognisedException,
 			PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
 		Comment c = new Comment(new Account(handle), message);
