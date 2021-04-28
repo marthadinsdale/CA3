@@ -1,2 +1,35 @@
+package socialmedia;
+
 public class Comment extends Post {
+
+    private String comment;
+
+
+    /**
+     * creates post with a handle and message
+     *
+     * @param account
+     * @param message
+     */
+    public Comment(Account account, String message) {
+        super(account, message);
+        setComment(comment);
+    }
+
+    public void setComment(String comment) {
+        if (isValidMessage(comment)) {
+            this.comment = comment;
+        } else {
+            System.exit(1);
+        }
+    }
+
+    private boolean isValidMessage(String str) {
+        if (str != null || !str.isBlank() || str.length() <= 100) {
+            return true;
+        } else {
+            System.err.printf("%s - is an invalid message.%n", str);
+            return false;
+        }
+    }
 }
