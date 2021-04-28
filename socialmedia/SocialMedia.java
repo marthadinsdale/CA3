@@ -359,7 +359,6 @@ public class SocialMedia implements SocialMediaPlatform {
 	/**
 	* This method clears all ArrayLists of posts, comments, endorsements and 
 	* accounts, thereby erasing the platform.
-	* @return the erased platform (0)
 	*/
 	@Override
 	public void erasePlatform() {
