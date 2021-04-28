@@ -190,8 +190,8 @@ public class SocialMedia implements SocialMediaPlatform {
 	@Override
         public int createPost(String handle, String message) throws HandleNotRecognisedException, InvalidPostException {
             Post p = new Post(handle, message);
-            for (Post p : posts) {
-                if (!a.getHandle().equals(handle)) {
+            for (Post i : posts) {
+                if (!i.getHandle().equals(handle)) {
                     throw new HandleNotRecognisedException("Handle not recognised");
                 } else if (message == null || message.length() > 100) {
 		    throw new InvalidPostException("Post message invalid.");
