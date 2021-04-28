@@ -379,9 +379,22 @@ public class SocialMedia implements SocialMediaPlatform {
 
 	}
 
+	/**
+	 * Method should load and replace this SocialMediaPlatform's contents with the
+	 * serialised contents stored in the file given in the argument.
+	 * @param filename location of the file to be loaded
+	 * @throws IOException            if there is a problem experienced when trying
+	 *                                to load the store contents from the file
+	 * @throws ClassNotFoundException if required class files cannot be found when
+	 *                                loading
+	 */
 	@Override
 	public void loadPlatform(String filename) throws IOException, ClassNotFoundException {
-		// TODO Auto-generated method stub
+		FileInputStream fileInputStream = new FileInputStream(filename);
+		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+		Object object = objectInputStream.readObject();
+		objectInputStream.close();
 
 	}
 
