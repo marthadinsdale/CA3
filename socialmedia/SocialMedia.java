@@ -212,12 +212,50 @@ public class SocialMedia implements SocialMediaPlatform {
 		return postId;
 	}
 
-	@Override
+	/**
+	 * The method creates a comment post referring to an existing post, similarly to
+	 * a reply on Twitter. A comment post is a special post. It contains a reference
+	 * to the post being commented upon.
+	 * <p>
+	 * The state of this SocialMediaPlatform must be be unchanged if any exceptions
+	 * are thrown.
+	 *
+	 * @param handle  of the account commenting a post.
+	 * @param id      of the post being commented.
+	 * @param message the comment post message.
+	 * @return the sequential ID of the created post.
+	 * @throws HandleNotRecognisedException if the handle does not match to any
+	 *                                      account in the system.
+	 * @throws PostIDNotRecognisedException if the ID does not match to any post in
+	 *                                      the system.
+	 * @throws NotActionablePostException   if the ID refers to a endorsement post.
+	 *                                      Endorsement posts are not endorsable.
+	 *                                      Endorsements cannot be commented. For
+	 *                                      instance, if post A is endorsed by post
+	 *                                      B, and an account wants to comment B, in
+	 *                                      fact, the comment must refers to A.
+	 * @throws InvalidPostException         if the comment message is empty or has
+	 *                                      more than 100 characters.
+	 */
 	public int commentPost(String handle, int id, String message) throws HandleNotRecognisedException,
 			PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
-		Comment c = new Comment();
-		comments.add(c);
-		return commentId;
+		Comment c = new Comment(new Account(handle), message);
+			for(Post p : posts) {
+			if(p.getId() != id) { 
+				throw new PostIDNotRecognisedException("Post ID not recognised");
+			}for(Account a :accounts) {
+				 if(!a.getHandle().equals(handle)) {
+					throw new HandleNotRecognisedException("Handle not recognised");
+				}for(Endorsement e : endorsements) {
+					if (e.getId() == id) {
+						throw new NotActionablePostException("Endorsements cannot be commented");
+					} else if (message == null || message.length() > 100) {
+						throw new InvalidPostException("Invalid Post");
+						} else {
+						comments.add(c); } 
+				 }
+		}
+	}return c.getId();
 	}
 
 	/**
