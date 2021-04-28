@@ -213,13 +213,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	}
 
 	/**
-	 * The method creates a comment post referring to an existing post, similarly to
-	 * a reply on Twitter. A comment post is a special post. It contains a reference
-	 * to the post being commented upon.
-	 * <p>
-	 * The state of this SocialMediaPlatform must be be unchanged if any exceptions
-	 * are thrown.
-	 *
+	 * The method creates a comment post referring to an existing post.
 	 * @param handle  of the account commenting a post.
 	 * @param id      of the post being commented.
 	 * @param message the comment post message.
