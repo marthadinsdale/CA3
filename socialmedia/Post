@@ -20,6 +20,19 @@ public class Post {
     }
 
     /**
+     * creates post with an account and message and associated post id
+     * @param handle
+     * @param message
+     * @param postId
+     */  
+    public Post(String handle, String message, int postId) {
+        ++Post.lastId;
+        this.handle = handle;
+        this.message = message;
+        setPostId(postId);
+    }
+
+    /**
      *
      * @return post in string format
      */
