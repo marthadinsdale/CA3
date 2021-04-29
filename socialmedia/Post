@@ -11,7 +11,7 @@ public class Post {
     private String[] comments;
 
     /**
-     * creates post with a handle and message
+     * constructor to create post with a handle and message
      * @param handle
      * @param message
      */
@@ -19,6 +19,26 @@ public class Post {
         this.postId = ++Post.lastId;
         setHandle(handle);
         setMessage(message);
+    }
+    
+    /**
+     * constructor to create a post with a handle and id
+     * @param handle
+     * @param postId
+     */
+    public Post(String handle, int postId) {
+        this.postId = ++Post.lastId;
+        this.handle = handle;
+    }
+
+    /**
+     * constructor to create a post with an account and id
+     * @param account
+     * @param postId
+     */
+    public Post(Account account, int postId) {
+        this.postId = ++Post.lastId;
+        setAccount(account);
     }
 
     /**
