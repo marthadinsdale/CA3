@@ -3,6 +3,8 @@ public class Endorsement extends Post{
     // initialise private Endorsement class variables
     private String endorsement;
     
+    // constructors
+    
     /**
      * Constructor to create endorsement of a post with an account and
      * associated post ID
@@ -14,6 +16,8 @@ public class Endorsement extends Post{
         setEndorsement(endorsement);
     }
 
+    // methods to check validity
+    
     /**
      * Method to check if the message in the endorsed post is valid. 
      * Message is valid if it is not blank and is less than or equal to 100
@@ -30,6 +34,8 @@ public class Endorsement extends Post{
         }
     }
 
+    // setter methods
+    
     /**
      * Setter method for endorsement
      * @param endorsement
@@ -42,6 +48,8 @@ public class Endorsement extends Post{
         }
     }
 
+    // getter methods 
+    
     /**
      * Getter method for endorsement
      * @return endorsement
