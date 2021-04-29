@@ -1,56 +1,54 @@
 public class Account {
 
+    // instantiate private Account class variables
     private static int lastId = 999;
     private int id;
     private String handle;
     private String descriptionField;
 
+    // constructors
+
     /**
-     * creates account with a handle
+     * Constructor to create account with a handle
      * @param handle
      */
     public Account(String handle) {
-        this.id = ++Account.lastId;
+        this.id = ++Account.lastId; // create new account ID
         setHandle(handle);
     }
 
-    /** creates account with all information, i.e. id, handle and description field
-     *
+    /**
+     * Constructor to create account with all information, i.e. id, handle and description field
      * @param handle
      * @param descriptionField
      */
     public Account(String handle, String descriptionField){
-        ++Account.lastId;
+        ++Account.lastId; // create new account ID
         this.handle = handle;
         setDescriptionField(descriptionField);
     }
+
+    // methods to check validity
     
     /**
-     *
-     * @return value in string format
+     * Method to check if the account handle associated with the post is valid.
+     * Handle is valid if it is not black and is less than or equal to 30 characters.
+     * @param str
+     * @return true if the handle is valid, false if not
      */
-    public String toString() {
-        return "ID: " + id +"/nHandle: " + handle + "/nDescription: " + descriptionField;
+    private boolean isValidString(String str) {
+        if (str != null && !str.isBlank() || str.length() < 30 || !str.contains(" ")) {
+            return true;
+        } else {
+            System.err.printf("%s - is not a valid string to use", str);
+            return false;
+        }
     }
     
+    // Setter methods
 
-    /** check whether the String is valid, i.e. not null or blank, fewer than 30 characters and contains no blank spaces
-     *
-     * @param str
-     * @return true if the String is valid, false if not
-     */
-   private boolean isValidString(String str) {
-       if (str != null && !str.isBlank() || str.length() < 30 || !str.contains(" ")) {
-           return true;
-       } else {
-           System.err.printf("%s - is not a valid string to use", str);
-           return false;
-       }
-   }
-    // setters
-
-    /** set a handle if it is valid
-     *
+    /** 
+     * Setter method for handle
      * @param handle to set
      */
     public void setHandle(String handle) {
@@ -61,22 +59,26 @@ public class Account {
         }
     }
 
+    /**
+     * Setter method for description field
+     * @param descriptionField
+     */
     public void setDescriptionField(String descriptionField){
         this.descriptionField = descriptionField;
     }
 
-    //getters
+    // getter methods
 
     /**
-     *
-     * @return ID
+     * Getter method for account ID
+     * @return id
      */
     public int getId() {
         return this.id;
     }
 
     /**
-     *
+     * Getter method for account handle
      * @return handle
      */
     public String getHandle() {
@@ -84,16 +86,20 @@ public class Account {
     }
 
     /**
-     *
-     * @return description field
+     * Getter method for account description
+     * @return descriptionField
      */
     public String getDescriptionField() {
         return this.descriptionField;
     }
 
+    // toString() method
+    /**
+     * The method generates a formatted string containing details of a single account
+     * @return account in string format
+     */
+    public String toString() {
+        return "ID: " + id +"/nHandle: " + handle + "/nDescription: " + descriptionField;
+    }
+
 }
-
-
-
-// account related methods
-// create account, remove account, change account handle, update account description, show account, get number of accounts, bet most endorsed account
