@@ -2,6 +2,12 @@ package socialmedia;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 
 
 public class SocialMedia implements SocialMediaPlatform {
@@ -76,7 +82,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	 */
 	@Override
 	public void removeAccount(int id) throws AccountIDNotRecognisedException {
-		for(Account a :accounts) {
+		for(Account a : accounts) {
 			if(a.getId() == id){
 				accounts.remove(a);
 				for(Post p: posts){
