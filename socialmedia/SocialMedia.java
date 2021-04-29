@@ -1,5 +1,3 @@
-package socialmedia;
-
 // import necessary Java packages for implementation
 import java.io.IOException;
 import java.util.ArrayList;
