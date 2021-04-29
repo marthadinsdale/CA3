@@ -1,64 +1,62 @@
-package socialmedia;
+import java.util.ArrayList;
 
 public class Post {
 
-    private static int lastId = 999;
+    // initialise private Post class variables
+    private static int lastId = 999; // set start point for post IDs
     private int postId;
     private Account account;
     private String handle;
     private String message;
+    // initialise public ArrayLists of post endorsements and comments
+    // public to allow posts to be added to ArrayLists from SocialMedia class
     public ArrayList<Endorsement> postEndorsements;
     public ArrayList<Comment> postComments;
 
+    // constructors
+    
     /**
-     * constructor to create post with a handle and message
+     * Constructor to create post with an account handle and message
      * @param handle
      * @param message
      */
     public Post(String handle, String message){
-        this.postId = ++Post.lastId;
+        this.postId = ++Post.lastId; // create new post ID
         setHandle(handle);
         setMessage(message);
     }
-    
+
     /**
-     * constructor to create a post with a handle and id
+     * Constructor to create post with an account handle and post ID
      * @param handle
      * @param postId
      */
     public Post(String handle, int postId) {
-        this.postId = ++Post.lastId;
+        this.postId = ++Post.lastId; // create new post ID
         this.handle = handle;
     }
 
     /**
-     * constructor to create a post with an account and id
+     * Constructor to create post with an account and post ID
      * @param account
      * @param postId
      */
     public Post(Account account, int postId) {
-        this.postId = ++Post.lastId;
+        this.postId = ++Post.lastId; // create new post ID
         setAccount(account);
     }
-
+    
+    // methods to check validity
+    
     /**
-     *
-     * @return post in string format
-     */
-    public String toString() {
-        return "ID: " + postId +"/nAccount: " + handle +
-                "/nNo. endorsements: " + postEndorsements.size() +
-                " | No. comments: " + postComments.size() +
-                "\n" + message;
-    }
-
-    /** check whether the message string is valid, i.e. not null, blank, or less than or equal to 100 characters
-     *
+     * Method to check if the message in the endorsed post is valid.
+     * Message is valid if it is not blank and is less than or equal to 100
+     * characters.
      * @param str
-     * @return true if the message is valid, false if not
+     * @return true if message is valid, false if not
      */
     private boolean isValidMessage(String str) {
-        if (str != null || !str.isBlank() || str.length() <= 100) {
+        if (str != null && !str.isBlank() && str.length() <= 100) {
             return true;
         } else {
             System.err.printf("%s - is an invalid message.%n", str);
@@ -66,8 +64,9 @@ public class Post {
         }
     }
 
-    /** check whether the handle string is valid, i.e. not null, blank, or more than 30 characters.
-     *
+    /** 
+     * Method to check if the account handle associated with the post is valid.
+     * Handle is valid if it is not black and is less than or equal to 30 characters.
      * @param str
      * @return true if the handle is valid, false if not
      */
@@ -79,21 +78,20 @@ public class Post {
             return false;
         }
     }
-    
+
     // setter methods
 
-    /** set account associated with post
-     *
+    /** 
+     * Setter method for account associated with post
      * @param account to set
      */
     public void setAccount(Account account) {
         this.account = account;
     }
-
-
-    /** set account handle associated with post
-     *
-     * @param handle to set
+    
+    /** 
+     * Setter method for account handle associated with post
+     * @param handle
      * @return handle
      */
     public String setHandle(String handle) {
@@ -105,9 +103,9 @@ public class Post {
         return handle;
     }
 
-    /** set a post message if it is a valid string
-     *
-     * @param message to set
+    /** 
+     * Setter method for post message
+     * @param message
      */
     public String setMessage(String message) {
         if (isValidMessage(message)){
@@ -119,8 +117,8 @@ public class Post {
     }
 
     /**
-     * set post ID number
-     * @param postId to set
+     * Setter method for post ID
+     * @param postId
      */
     public int setPostId(int postId) {
         this.postId = postId;
@@ -130,16 +128,15 @@ public class Post {
     // getter methods
 
     /**
-     *
-     * @return post ID
+     * Getter method for post ID
+     * @return postId
      */
     public int getId() {
         return postId;
     }
-
-
+    
     /**
-     *
+     * Getter method for account associated with post
      * @return account
      */
     public Account getAccount() {
@@ -147,17 +144,33 @@ public class Post {
     }
 
     /**
-     * 
+     * Getter method for account handle associated with post
      * @return handle
      */
     public String getHandle(){
         return handle;
     }
+    
     /**
-     *
+     * Getter method for post message
      * @return message
      */
     public String getMessage() {
         return message;
     }
+
+    // toString() method
+    
+    /**
+     * The method generates a formatted string containing the details
+     * of a single post.
+     * @return post in string format
+     */
+    public String toString() {
+        return "ID: " + postId +"/nAccount: " + handle +
+                "/nNo. endorsements: " + postEndorsements.size() +
+                " | No. comments: " + postComments.size() +
+                "\n" + message;
+    }
+
 }
