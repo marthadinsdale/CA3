@@ -495,13 +495,15 @@ public class SocialMedia implements SocialMediaPlatform {
 
 	@Override
 	public int getMostEndorsedPost() {
-		// TODO Auto-generated method stub
+		// iterate through postEndorsements ArrayList for each post and find
+		// post with most endorsements
 		return 0;
 	}
 
 	@Override
 	public int getMostEndorsedAccount() {
-		// TODO Auto-generated method stub
+		// iterate through postComments ArrayList for each post and find post
+		// with most comments
 		return 0;
 	}
 
