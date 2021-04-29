@@ -2,20 +2,39 @@ package socialmedia;
 
 public class Comment extends Post {
 
+    // initialise private Comment class variables
     private String comment;
-
-
+    
     /**
-     * creates post with a handle and message
+     * Constructor to create post with a handle and message
      *
      * @param account
      * @param message
      */
     public Comment(Account account, String message) {
-        super(account, message);
+        super(account, message); // access superclass parameters
         setComment(comment);
     }
 
+    /**
+     * Method to check if the message in the endorsed post is valid.
+     * Message is valid if it is not blank and is less than or equal to 100
+     * characters.
+     * @param str
+     * @return true if message is valid, false if not
+     */
+    private boolean isValidMessage(String str) {
+        if (str != null || !str.isBlank() || str.length() <= 100) {
+            return true;
+        } else {
+            System.err.printf("%s - is an invalid message.%n", str);
+            return false;
+        }
+    }
+    /**
+     * Setter method for comment
+     * @param comment
+     */
     public void setComment(String comment) {
         if (isValidMessage(comment)) {
             this.comment = comment;
@@ -24,16 +43,11 @@ public class Comment extends Post {
         }
     }
 
+    /**
+     * Getter method for comment
+     * @return
+     */
     public String getComment() {
         return this.comment;
-    }
-    
-    private boolean isValidMessage(String str) {
-        if (str != null || !str.isBlank() || str.length() <= 100) {
-            return true;
-        } else {
-            System.err.printf("%s - is an invalid message.%n", str);
-            return false;
-        }
     }
 }
