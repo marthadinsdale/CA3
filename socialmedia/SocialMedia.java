@@ -180,7 +180,7 @@ public class SocialMedia implements SocialMediaPlatform {
 			}
 		}
 		return result;
-	} // just need to add endorsements and posts in the toString when calculated 
+	}
 
 	/**
 	 * The method creates a post in the platform with the given handle and message.
@@ -211,14 +211,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	
 	/**
          * The method creates an endorsement post of an existing post, similar to a
-         * retweet on Twitter. An endorsement post is a special post. It contains a
-         * reference to the endorsed post and its message is formatted as:
-         * <p>
-         * <code>"EP@" + [endorsed account handle] + ": " + [endorsed message]</code>
-         * <p>
-         * The state of this SocialMediaPlatform must be be unchanged if any exceptions
-         * are thrown.
-         *
+         * retweet on Twitter. 
          * @param handle of the account endorsing a post.
          * @param id of the post being endorsed.
          * @return the sequential ID of the created post.
@@ -343,8 +336,7 @@ public class SocialMedia implements SocialMediaPlatform {
 	
 	/**
          * The method generates a formated string containing the details of a single
-         * post. The format is as follows:
-         *
+         * post. 
          * <pre>
          * ID: [post ID]
          * Account: [account handle]
