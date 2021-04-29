@@ -1,6 +1,6 @@
 public class Endorsement extends Post{
 
-    // initialise Endorsement class variables
+    // initialise private Endorsement class variables
     private String endorsement;
     
     /**
