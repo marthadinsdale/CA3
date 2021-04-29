@@ -208,15 +208,57 @@ public class SocialMedia implements SocialMediaPlatform {
 	    }
             return p.getId();
         }
-
+	
+	/**
+         * The method creates an endorsement post of an existing post, similar to a
+         * retweet on Twitter. An endorsement post is a special post. It contains a
+         * reference to the endorsed post and its message is formatted as:
+         * <p>
+         * <code>"EP@" + [endorsed account handle] + ": " + [endorsed message]</code>
+         * <p>
+         * The state of this SocialMediaPlatform must be be unchanged if any exceptions
+         * are thrown.
+         *
+         * @param handle of the account endorsing a post.
+         * @param id of the post being endorsed.
+         * @return the sequential ID of the created post.
+         * @throws HandleNotRecognisedException if the handle does not match to any
+         * account in the system.
+         * @throws PostIDNotRecognisedException if the ID does not match to any post in
+         * the system.
+         * @throws NotActionablePostException if the ID refers to a endorsement post.
+         * Endorsement posts are not endorsable.
+         * Endorsements are not transitive. For
+         * instance, if post A is endorsed by post
+         * B, and an account wants to endorse B, in
+         * fact, the endorsement must refers to A.
+         */
 	@Override
-	public int endorsePost(String handle, int id)
-			throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException {
-		Endorsement e = new Endorsement();
-		endorsements.add(e);
-		return postId;
-	}
-
+        public int endorsePost(String handle, int id)
+            throws HandleNotRecognisedException, PostIDNotRecognisedException, NotActionablePostException {
+            Endorsement e = new Endorsement(new Account(handle), id);
+            for(Post p : posts) {
+                if(p.getId() != id) {
+                    throw new PostIDNotRecognisedException("Post ID not recognised");
+                }
+                for (Account a : accounts) {
+                    if(!a.getHandle().equals(handle)) {
+                        throw new HandleNotRecognisedException("Handle not recognised");
+                    }
+                    for (Endorsement x : endorsements) {
+                        if (x.getId() == id) {
+                            throw new NotActionablePostException("Endorsements cannot be endorsed");
+                        } else {
+                            e.setHandle(handle);
+                            e.setPostId(id);
+                            endorsements.add(e);
+                        }
+                    }
+                }
+            }
+            return e.getId();
+        }
+	
 	/**
 	 * The method creates a comment post referring to an existing post.
 	 * @param handle  of the account commenting a post.
