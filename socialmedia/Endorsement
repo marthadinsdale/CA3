@@ -1,12 +1,39 @@
 public class Endorsement extends Post{
 
+    // initialise Endorsement class variables
     private String endorsement;
-
+    
+    /**
+     * Constructor to create endorsement of a post with an account and
+     * associated post ID
+     * @param account
+     * @param postId
+     */
     public Endorsement(Account account, int postId){
-        super(account, postId);
+        super(account, postId); // access superclass parameters
         setEndorsement(endorsement);
     }
 
+    /**
+     * Method to check if the message in the endorsed post is valid. 
+     * Message is valid if it is not blank and is less than or equal to 100
+     * characters.
+     * @param str
+     * @return true if message is valid, false if not
+     */
+    private boolean isValidMessage(String str) {
+        if (str != null || !str.isBlank() || str.length() <= 100) {
+            return true;
+        } else {
+            System.err.printf("%s - is an invalid message.%n", str);
+            return false;
+        }
+    }
+
+    /**
+     * Setter method for endorsement
+     * @param endorsement
+     */
     public void setEndorsement(String endorsement) {
         if (isValidMessage(endorsement)) {
             this.endorsement = endorsement;
@@ -15,12 +42,11 @@ public class Endorsement extends Post{
         }
     }
 
-    private boolean isValidMessage(String str) {
-        if (str != null || !str.isBlank() || str.length() <= 100) {
-            return true;
-        } else {
-            System.err.printf("%s - is an invalid message.%n", str);
-            return false;
-        }
+    /**
+     * Getter method for endorsement
+     * @return endorsement
+     */
+    public String getEndorsement() {
+        return this.endorsement;
     }
 }
