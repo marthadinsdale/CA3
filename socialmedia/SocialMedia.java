@@ -554,12 +554,18 @@ public class SocialMedia implements SocialMediaPlatform {
 	 */
 	@Override
 	public void loadPlatform(String filename) throws IOException, ClassNotFoundException {
-		FileInputStream fileInputStream = new FileInputStream(filename);
-		BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
-		ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
-		Object object = objectInputStream.readObject();
-		objectInputStream.close();
+		try {
+			FileInputStream fileInputStream = new FileInputStream(filename);
+			BufferedInputStream bufferedInputStream = new BufferedInputStream(fileInputStream);
+			ObjectInputStream objectInputStream = new ObjectInputStream(bufferedInputStream);
+			Object object = objectInputStream.readObject();
+			objectInputStream.close();
 
+		} catch (IOException e) {
+			System.out.println("Problem loading content");
+		} catch (ClassNotFoundException e) {
+			System.out.println("Class cannot be found");
+		}
 	}
-
+}
 }
