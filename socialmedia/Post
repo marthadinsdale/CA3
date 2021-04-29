@@ -7,8 +7,8 @@ public class Post {
     private Account account;
     private String handle;
     private String message;
-    private String[] endorsements;
-    private String[] comments;
+    public ArrayList<Endorsement> postEndorsements;
+    public ArrayList<Comment> postComments;
 
     /**
      * constructor to create post with a handle and message
