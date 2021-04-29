@@ -46,7 +46,10 @@ public class Post {
      * @return post in string format
      */
     public String toString() {
-        return "ID: " + postId +"/nAccount: " + handle + "/n " + message;
+        return "ID: " + postId +"/nAccount: " + handle +
+                "/nNo. endorsements: " + postEndorsements.size() +
+                " | No. comments: " + postComments.size() +
+                "\n" + message;
     }
 
     /** check whether the message string is valid, i.e. not null, blank, or less than or equal to 100 characters
