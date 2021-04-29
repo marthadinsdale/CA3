@@ -493,12 +493,26 @@ public class SocialMedia implements SocialMediaPlatform {
 		return comments.size();
 	}
 
-	@Override
-	public int getMostEndorsedPost() {
-		// iterate through postEndorsements ArrayList for each post and find
-		// post with most endorsements
-		return 0;
-	}
+	/**
+         * This method identifies and returns the post with the most number of
+         * endorsements, a.k.a. the most popular post.
+         *
+         * @return the ID of the most popular post.
+         */
+        @Override
+        public int getMostEndorsedPost() {
+            Post mostEndorsedPost = null;
+            for (Post i : posts) {
+                for (Post j : posts) {
+                    if (i.postEndorsements.size() > j.postEndorsements.size()) {
+                      mostEndorsedPost = i;
+                    } else {
+                        mostEndorsedPost = j;
+                    }
+                }
+            }
+            return mostEndorsedPost.getId();
+        }
 
 	@Override
 	public int getMostEndorsedAccount() {
