@@ -249,9 +249,16 @@ public class SocialMedia implements SocialMediaPlatform {
                         if (x.getId() == id) {
                             throw new NotActionablePostException("Endorsements cannot be endorsed");
                         } else {
+				
+			    // set parameters
                             e.setHandle(handle);
                             e.setPostId(id);
+			    
+		            // add endorsement to running total of all endorsements in platform
                             endorsements.add(e);
+			    
+			    // add new endorsement to post it is associated with
+			    p.postEndorsements.add(e);
                         }
                     }
                 }
@@ -283,21 +290,35 @@ public class SocialMedia implements SocialMediaPlatform {
 			PostIDNotRecognisedException, NotActionablePostException, InvalidPostException {
 		Comment c = new Comment(new Account(handle), message);
 			for(Post p : posts) {
-			if(p.getId() != id) { 
+			    if(p.getId() != id) { 
 				throw new PostIDNotRecognisedException("Post ID not recognised");
-			}for(Account a :accounts) {
-				 if(!a.getHandle().equals(handle)) {
+			    }
+			    for(Account a :accounts) {
+		                if(!a.getHandle().equals(handle)) {
 					throw new HandleNotRecognisedException("Handle not recognised");
-				}for(Endorsement e : endorsements) {
+				}
+				for(Endorsement e : endorsements) {
 					if (e.getId() == id) {
 						throw new NotActionablePostException("Endorsements cannot be commented");
 					} else if (message == null || message.length() > 100) {
 						throw new InvalidPostException("Invalid Post");
 						} else {
-						comments.add(c); } 
+						
+						// set parameters
+						c.setHandle(handle);
+						c.setPostId(id);
+						c.setMessage(message);
+						
+						// add comment to running total of all comments in platform
+						comments.add(c); 
+						
+						// add new comment to post it is associated with
+						p.postComments.add(c);
+					} 
 				 }
-		}
-	}return c.getId();
+		        }
+	       }
+	       return c.getId();
 	}
 
 	/**
