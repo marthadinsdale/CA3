@@ -24,6 +24,10 @@ public class Comment extends Post {
         }
     }
 
+    public String getComment() {
+        return this.comment;
+    }
+    
     private boolean isValidMessage(String str) {
         if (str != null || !str.isBlank() || str.length() <= 100) {
             return true;
